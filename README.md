@@ -10,11 +10,11 @@ It follows the [IPMI Management FRU Information Storage Definition Specification
 **NOTE:** This tool uses the `iniparser` library for parsing the config file. This library was modified for some bug-fixes.
 
 ## Usage:
-Generating a FRU data file:
+Generating a FRU data file using 8-bit ASCII:
 ```
-$ ipmi-fru-it -w -s 2048 -c fru.conf -o FRU.bin
+$ ipmi-fru-it -s 2048 -c fru.conf -o FRU.bin -a
 ```
-Reading a FRU data file:
+Reading a FRU data file (Not implemented, please use https://github.com/duanzhang512/ipmi-fru-parser):
 ```
 $ ipmi-fru-it -r -i FRU.bin
 ```
