@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 
 #include "iniparser.h"
 #include "fru-defs.h"
@@ -22,6 +23,7 @@ char usage[] =
 "\t-w\t\tWrite FRU data to file specified in -o\n"
 "\t-c FILE\t\tFRU Config file\n"
 "\t-s SIZE\t\tMaximum file size (in bytes) allowed for the FRU data file\n"
+"\t-a\t\tUse 8-bit ASCII\n"
 "\t-o FILE\t\tOutput FRU data filename (use with -w)\n\n";
 
 /* Std IPMI FRU Section headers */
@@ -377,6 +379,8 @@ int gen_bia(dictionary *ini, char **bia_data)
         i;
 
     uint8_t end_marker, empty_marker, cksum;
+	static const uint64_t  secs_from_1970_1996 = 820454400;
+	struct timeval tval;
 
     bia = NULL;
     size = offset = cksum = empty_marker = 0;
@@ -392,8 +396,11 @@ int gen_bia(dictionary *ini, char **bia_data)
     mfg_date = iniparser_getint(ini, get_key(BIA, MFG_DATETIME), -1);
     if (mfg_date == -1) {
         fprintf(stdout, "Manufacturing time not specified. "
-                "Defaulting to unspecified\n");
-        mfg_date = 0;
+                "Defaulting to current date\n");
+
+		gettimeofday (&tval, NULL);
+        mfg_date = (tval.tv_sec - secs_from_1970_1996) / 60;
+		printf("current: %d, mfg: %d\n", tval.tv_sec, mfg_date);
     }
     size += sizeof(struct board_info_area);
 
