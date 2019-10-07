@@ -47,22 +47,22 @@ const char* FRU_FILE_ID     = "fru_file_id";
 
 int (*packer)(const char *, char **);
 
-inline uint8_t get_6bit_ascii(char c)
+uint8_t get_6bit_ascii(char c)
 {
     return (c - 0x20) & 0x3f;
 }
 
-inline uint8_t get_aligned_size(uint8_t size, uint8_t align)
+uint8_t get_aligned_size(uint8_t size, uint8_t align)
 {
     return (size + align - 1) & ~(align - 1);
 }
 
-inline uint8_t get_fru_tl_type(struct fru_type_length *ftl)
+uint8_t get_fru_tl_type(struct fru_type_length *ftl)
 {
     return ftl->type_length & 0xc0;
 }
 
-inline uint8_t get_fru_tl_length(struct fru_type_length *ftl)
+uint8_t get_fru_tl_length(struct fru_type_length *ftl)
 {
     return ftl->type_length & 0x3f;
 }
