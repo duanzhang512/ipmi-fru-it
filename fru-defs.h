@@ -90,6 +90,7 @@ struct __attribute__( ( __packed__ ) ) product_info_area
     //struct fru_type_length t7[];  //Product SKU ID
 };
 
+/* 13. MultiRecord Info Area - Common Record Header */
 struct __attribute__( ( __packed__ ) ) multi_record_header
 {
     uint8_t     type_id;
@@ -105,13 +106,6 @@ struct __attribute__( ( __packed__ ) ) multi_record_header
 /* 13. MultiRecord Info Area - Management Access Record Format */
 struct __attribute__( ( __packed__ ) ) management_access_record
 {
-    /*
-        uint8_t     type_id;
-        uint8_t     format_version;
-        uint8_t     record_length;
-        uint8_t     record_checksum;
-        uint8_t     header_checksum;
-    */
     struct multi_record_header record_header;
     uint8_t     sub_record_type;
     uint8_t     record_data[UUID_BYTE_LENGTH];
@@ -121,13 +115,6 @@ struct __attribute__( ( __packed__ ) ) management_access_record
 /* 14. MultiRecord Info Area - OEM VPD Version Format */
 struct __attribute__( ( __packed__ ) ) oem_vpd_version
 {
-    /*
-        uint8_t     type_id;
-        uint8_t     format_version;
-        uint8_t     record_length;
-        uint8_t     record_checksum;
-        uint8_t     header_checksum;
-    */
     struct multi_record_header record_header;
     uint8_t     major_version;
     uint8_t     minor_version;
@@ -141,13 +128,6 @@ struct __attribute__( ( __packed__ ) ) oem_vpd_version
 /* 15. MultiRecord Info Area - MAC Address Format */
 struct __attribute__( ( __packed__ ) ) mac_address
 {
-    /*
-        uint8_t     type_id;
-        uint8_t     format_version;
-        uint8_t     record_length;
-        uint8_t     record_checksum;
-        uint8_t     header_checksum;
-    */
     struct multi_record_header record_header;
     uint8_t     host_mac_address_count;
     uint8_t     host_base_mac_address[MAC_ADDRESS_BYTE_LENGTH];
@@ -161,13 +141,6 @@ struct __attribute__( ( __packed__ ) ) mac_address
 /* 16. MultiRecord Info Area - Fan Speed Control Parameter Format */
 struct __attribute__( ( __packed__ ) ) fan_speed_control_parameter
 {
-    /*
-        uint8_t     type_id;
-        uint8_t     format_version;
-        uint8_t     record_length;
-        uint8_t     record_checksum;
-        uint8_t     header_checksum;
-    */
     struct multi_record_header record_header;
     uint16_t    max_fan_speed;
     uint8_t     fan_airflow;
@@ -178,19 +151,10 @@ struct __attribute__( ( __packed__ ) ) fan_speed_control_parameter
 #define CPU_FAMILY_STR_LENGTH    16
 #define CPU_TYPE_STR_LENGTH      16
 
-
 /* 17. MultiRecord Info Area - Board Controller Info Format */
 struct __attribute__( ( __packed__ ) ) board_controller_info
 {
-    /*
-        uint8_t     type_id;
-        uint8_t     format_version;
-        uint8_t     record_length;
-        uint8_t     record_checksum;
-        uint8_t     header_checksum;
-    */
     struct multi_record_header record_header;
-    //struct fru_type_length    record_data[];
     uint8_t     vendor_id[CPU_VENDOR_ID_STR_LENGTH];
     uint8_t     family[CPU_FAMILY_STR_LENGTH];
     uint8_t     type[CPU_TYPE_STR_LENGTH];
@@ -200,15 +164,7 @@ struct __attribute__( ( __packed__ ) ) board_controller_info
 /* 18. MultiRecord Info Area - System Configuration Format */
 struct __attribute__( ( __packed__ ) ) system_configuration
 {
-    /*
-        uint8_t     type_id;
-        uint8_t     format_version;
-        uint8_t     record_length;
-        uint8_t     record_checksum;
-        uint8_t     header_checksum;
-    */
     struct multi_record_header record_header;
-    //struct fru_type_length    record_data[];
     uint32_t    customer_id;
     uint8_t     pad[7];
 };
@@ -216,13 +172,6 @@ struct __attribute__( ( __packed__ ) ) system_configuration
 /* 19. MultiRecord Info Area - Management Access Record Format */
 struct __attribute__( ( __packed__ ) ) multirecord_int_record
 {
-    /*
-        uint8_t     type_id;
-        uint8_t     format_version;
-        uint8_t     record_length;
-        uint8_t     record_checksum;
-        uint8_t     header_checksum;
-    */
     struct multi_record_header record_header;
     uint8_t     record_data[];
 };
