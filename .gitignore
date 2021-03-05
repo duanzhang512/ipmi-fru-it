@@ -33,4 +33,5 @@
 
 # Generated files
 *.d
+*.bin
 ipmi-fru-it
