@@ -1486,7 +1486,6 @@ int gen_mia_mac( dictionary * ini, char * * mia_data )
     }
 
     bmc_base_address = iniparser_getstring( ini, get_key( MIA_MAC, BMC_BASE_MAC ), NULL );
-    printf("BMC base mac addr: %s\n", bmc_base_address);
     if( bmc_base_address == NULL || strlen( bmc_base_address ) != MAC_ADDRESS_STR_LENGTH )
     {
         fprintf( stderr, "\nInvalid BMC Base MAC Address\n\n" );
