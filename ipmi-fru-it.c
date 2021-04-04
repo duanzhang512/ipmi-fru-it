@@ -1485,14 +1485,14 @@ int gen_mia_mac( dictionary * ini, char * * mia_data )
         exit( EXIT_FAILURE );
     }
 
-    bmc_base_address = iniparser_getstring( ini, get_key( MIA_MAC, HOST_BASE_MAC ), NULL );
+    bmc_base_address = iniparser_getstring( ini, get_key( MIA_MAC, BMC_BASE_MAC ), NULL );
     if( bmc_base_address == NULL || strlen( bmc_base_address ) != MAC_ADDRESS_STR_LENGTH )
     {
         fprintf( stderr, "\nInvalid BMC Base MAC Address\n\n" );
         exit( EXIT_FAILURE );
     }
 
-    switch_base_address = iniparser_getstring( ini, get_key( MIA_MAC, HOST_BASE_MAC ), NULL );
+    switch_base_address = iniparser_getstring( ini, get_key( MIA_MAC, SWITCH_BASE_MAC ), NULL );
     if( switch_base_address == NULL || strlen( switch_base_address ) != MAC_ADDRESS_STR_LENGTH )
     {
         fprintf( stderr, "\nInvalid Switch Base MAC Address\n\n" );
