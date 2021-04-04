@@ -1486,6 +1486,7 @@ int gen_mia_mac( dictionary * ini, char * * mia_data )
     }
 
     bmc_base_address = iniparser_getstring( ini, get_key( MIA_MAC, BMC_BASE_MAC ), NULL );
+    printf("BMC base mac addr: %s\n", bmc_base_address);
     if( bmc_base_address == NULL || strlen( bmc_base_address ) != MAC_ADDRESS_STR_LENGTH )
     {
         fprintf( stderr, "\nInvalid BMC Base MAC Address\n\n" );
@@ -1516,13 +1517,13 @@ int gen_mia_mac( dictionary * ini, char * * mia_data )
             &mac->host_base_mac_address[4], &mac->host_base_mac_address[5] );
 
     mac->bmc_mac_address_count = bmc_mac_count;
-    sscanf( host_base_address, "%2hhx%2hhx%2hhx%2hhx%2hhx%2hhx",
+    sscanf( bmc_base_address, "%2hhx%2hhx%2hhx%2hhx%2hhx%2hhx",
             &mac->bmc_base_mac_address[0], &mac->bmc_base_mac_address[1],
             &mac->bmc_base_mac_address[2], &mac->bmc_base_mac_address[3],
             &mac->bmc_base_mac_address[4], &mac->bmc_base_mac_address[5] );
 
     mac->switch_mac_address_count = switch_mac_count;
-    sscanf( host_base_address, "%2hhx%2hhx%2hhx%2hhx%2hhx%2hhx",
+    sscanf( switch_base_address, "%2hhx%2hhx%2hhx%2hhx%2hhx%2hhx",
             &mac->switch_base_mac_address[0], &mac->switch_base_mac_address[1],
             &mac->switch_base_mac_address[2], &mac->switch_base_mac_address[3],
             &mac->switch_base_mac_address[4], &mac->switch_base_mac_address[5] );
